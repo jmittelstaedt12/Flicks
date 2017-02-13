@@ -20,6 +20,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var errorLabel: UILabel!
     
     var filteredData: [NSDictionary]!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -30,7 +31,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         searchBar.delegate = self
         
         errorLabel.isHidden = true
-        
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
@@ -48,18 +48,18 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
             if let data = data {
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
-                    print(dataDictionary)
                     self.movies = dataDictionary["results"] as? [NSDictionary]
+                    self.filteredData = self.movies
                     self.tableView.reloadData()
+                    //print(self.movies?[0] ?? "nada")
+                    print(self.filteredData?[0] ?? "nada")
+
                 }
             }
             else{
                 self.errorLabel.isHidden = false
             }
         }
-        
-        filteredData = movies
-        
         
         task.resume()
         // Do any additional setup after loading the view.
@@ -71,7 +71,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let movies = movies{
+        //print(self.filteredData?[0] ?? "nada")
+        if let movies = self.filteredData{
             return movies.count
         }
         else{
@@ -80,9 +81,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell",for: indexPath) as! MovieCell
         
-        let movie = filteredData![indexPath.row]
+        //print(self.filteredData?[0] ?? "nada")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell",for: indexPath) as! MovieCell
+        let movie = self.filteredData![indexPath.row]
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
         
@@ -110,7 +112,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             
             if let data = data {
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
-                    print(dataDictionary)
                     self.movies = dataDictionary["results"] as? [NSDictionary]
                     self.tableView.reloadData()
                 }
@@ -120,16 +121,16 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             }
             refreshControl.endRefreshing()
         }
-        filteredData = movies
+        self.filteredData = movies
         task.resume()
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        filteredData = searchText.isEmpty ? movies: movies?.filter{ (item: NSDictionary) -> Bool in
-            return item.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
-        }
+   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
     
+    filteredData = searchText.isEmpty ? movies : movies?.filter({(movie: NSDictionary) -> Bool in
+        return (movie["title"] as! String).range(of: searchText, options: .caseInsensitive) != nil
+    })
+    tableView.reloadData()
     }
     
 
