@@ -5,7 +5,7 @@ Time spent: 12 hours spent in total
 
 ## User Stories
 
-The following **required** functionality is complete:
+The following functionality is complete:
 
 - [X] User can view a list of movies currently playing in theaters from The Movie Database.
 - [X] Poster images are loaded using the UIImageView category in the AFNetworking library.
