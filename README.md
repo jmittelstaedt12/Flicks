@@ -1,4 +1,4 @@
-# Project 1 - Flicks
+# Project 1 / 2 - Flicks
 Flicks is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
 Time spent: 12 hours spent in total
