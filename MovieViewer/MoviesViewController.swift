@@ -1,4 +1,3 @@
-//
 //  MoviesViewController.swift
 //  MovieViewer
 //
@@ -10,15 +9,15 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {    
+    
     @IBOutlet weak var searchBar: UISearchBar!
-
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var errorLabel: UILabel!
+    
     var movies: [NSDictionary]?
     let refreshControl = UIRefreshControl()
     var endpoint: String = ""
-    @IBOutlet weak var errorLabel: UILabel!
-    
     var filteredData: [NSDictionary]!
     
     override func viewDidLoad() {
@@ -27,10 +26,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         tableView.dataSource = self
         tableView.delegate = self
-        
         searchBar.delegate = self
-        
         errorLabel.isHidden = true
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor.darkGray
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
@@ -43,35 +43,23 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         MBProgressHUD.showAdded(to: self.view, animated: true)
 
         let task: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
-            
-        MBProgressHUD.hide(for: self.view, animated: true)
-
+            MBProgressHUD.hide(for: self.view, animated: true)
             if let data = data {
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
                     self.movies = dataDictionary["results"] as? [NSDictionary]
                     self.filteredData = self.movies
                     self.tableView.reloadData()
-                    //print(self.movies?[0] ?? "nada")
                     print(self.filteredData?[0] ?? "nada")
-
                 }
             }
             else{
                 self.errorLabel.isHidden = false
             }
         }
-        
         task.resume()
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //print(self.filteredData?[0] ?? "nada")
         if let movies = self.filteredData{
             return movies.count
         }
@@ -82,7 +70,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         
-        //print(self.filteredData?[0] ?? "nada")
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell",for: indexPath) as! MovieCell
         let movie = self.filteredData![indexPath.row]
         let title = movie["title"] as! String
@@ -90,10 +77,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         let baseUrl = "https://image.tmdb.org/t/p/w500"
         if let posterPath = movie["poster_path"] as? String {
-            let imageUrl = NSURL(string: baseUrl + posterPath)
-            cell.posterView.setImageWith(imageUrl as! URL)
+            let imageUrl = URL(string: baseUrl + posterPath)
+            cell.posterView.setImageWith(imageUrl!)
         }
-        
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
         cell.selectionStyle = .gray
@@ -113,6 +99,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             if let data = data {
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
                     self.movies = dataDictionary["results"] as? [NSDictionary]
+                    self.filteredData = self.movies
                     self.tableView.reloadData()
                 }
             }
@@ -121,25 +108,17 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             }
             refreshControl.endRefreshing()
         }
-        self.filteredData = movies
         task.resume()
     }
     
    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
     
-    filteredData = searchText.isEmpty ? movies : movies?.filter({(movie: NSDictionary) -> Bool in
-        return (movie["title"] as! String).range(of: searchText, options: .caseInsensitive) != nil
-    })
-    tableView.reloadData()
+        filteredData = searchText.isEmpty ? movies : movies?.filter({(movie: NSDictionary) -> Bool in
+            return (movie["title"] as! String).range(of: searchText, options: .caseInsensitive) != nil
+        })
+        tableView.reloadData()
     }
     
-
-    
-
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         let cell = sender as! UITableViewCell
@@ -148,9 +127,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         let detailViewController = segue.destination as! DetailViewController
         detailViewController.movie = movie
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    
 
 }

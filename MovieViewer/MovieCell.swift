@@ -1,4 +1,3 @@
-//
 //  MovieCell.swift
 //  MovieViewer
 //
