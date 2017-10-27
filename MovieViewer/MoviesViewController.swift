@@ -29,6 +29,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         searchBar.delegate = self
         errorLabel.isHidden = true
         
+        self.tabBarController?.tabBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.barTintColor = UIColor.darkGray
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         let refreshControl = UIRefreshControl()
@@ -82,7 +83,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         }
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
-        cell.selectionStyle = .gray
+        
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = UIColor.black
+        cell.selectedBackgroundView = bgColorView
+        
         return cell
     }
     

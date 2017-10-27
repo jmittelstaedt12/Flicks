@@ -7,17 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1908A6641F9A3296007B2FEB /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908A6631F9A3296007B2FEB /* MovieCell.swift */; };
 		192702571E414D3000D1A467 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192702561E414D3000D1A467 /* AppDelegate.swift */; };
 		1927025C1E414D3000D1A467 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927025A1E414D3000D1A467 /* Main.storyboard */; };
 		1927025E1E414D3000D1A467 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1927025D1E414D3000D1A467 /* Assets.xcassets */; };
 		192702611E414D3000D1A467 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927025F1E414D3000D1A467 /* LaunchScreen.storyboard */; };
 		192702691E414DB000D1A467 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192702681E414DB000D1A467 /* MoviesViewController.swift */; };
-		1927026C1E426DBC00D1A467 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1927026B1E426DBC00D1A467 /* MovieCell.swift */; };
 		196216BA1E4A8F5F006E8C5C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196216B91E4A8F5F006E8C5C /* DetailViewController.swift */; };
 		AAE6EB811611E95792EF34C1 /* Pods_MovieViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB85DD741E353FB7933A7009 /* Pods_MovieViewer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1908A6631F9A3296007B2FEB /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		192702531E414D3000D1A467 /* MovieViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		192702561E414D3000D1A467 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1927025B1E414D3000D1A467 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -25,7 +26,6 @@
 		192702601E414D3000D1A467 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		192702621E414D3000D1A467 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		192702681E414DB000D1A467 /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
-		1927026B1E426DBC00D1A467 /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		196216B91E4A8F5F006E8C5C /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		1D58C90EF2C9806F72000F7D /* Pods-MovieViewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieViewer.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieViewer/Pods-MovieViewer.release.xcconfig"; sourceTree = "<group>"; };
 		AB85DD741E353FB7933A7009 /* Pods_MovieViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +69,7 @@
 				1927026A1E426D6400D1A467 /* Views */,
 				192702561E414D3000D1A467 /* AppDelegate.swift */,
 				1927025A1E414D3000D1A467 /* Main.storyboard */,
+				1908A6631F9A3296007B2FEB /* MovieCell.swift */,
 				1927025D1E414D3000D1A467 /* Assets.xcassets */,
 				1927025F1E414D3000D1A467 /* LaunchScreen.storyboard */,
 				192702621E414D3000D1A467 /* Info.plist */,
@@ -79,7 +80,6 @@
 		1927026A1E426D6400D1A467 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1927026B1E426DBC00D1A467 /* MovieCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -140,7 +140,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Jacob Mittelstaedt";
 				TargetAttributes = {
 					192702521E414D3000D1A467 = {
@@ -235,7 +235,7 @@
 			files = (
 				192702571E414D3000D1A467 /* AppDelegate.swift in Sources */,
 				192702691E414DB000D1A467 /* MoviesViewController.swift in Sources */,
-				1927026C1E426DBC00D1A467 /* MovieCell.swift in Sources */,
+				1908A6641F9A3296007B2FEB /* MovieCell.swift in Sources */,
 				196216BA1E4A8F5F006E8C5C /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -271,7 +271,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -279,7 +281,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -320,7 +326,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -328,7 +336,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
